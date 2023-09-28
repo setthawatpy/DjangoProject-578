@@ -1,0 +1,81 @@
+{% extends 'components/base.html' %}
+{% load static %} 
+{% load humanize %}
+
+{% block title %}
+    <title>รายการสินค้า</title>
+{% endblock title %}
+{% block content %}
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-header">
+                <h5>ตารางรายการสินค้า / Product List Table</h5>
+            </div>
+            <div class="d-flex justify-content-between align-items-center mt-5">
+                <div class="col-lg-3 px-4">
+                    <a href="{% url 'createProduct' %}" class="btn btn-primary btn-block">
+                        <i class="fa-solid fa-plus"></i>เพิ่มสินค้า
+                    </a>
+                </div>
+                <form action="#">
+                    <div class="input-group">
+                        <input class="form-control" type="search" name="search" placeholder="ป้อนชื่อสินค้าที่ต้องการค้นหา" required>
+                        <button type="submit" class="btn btn-primary">ค้นหา</button>
+                    </div>
+                </form>
+                <h6 class="mb-0 f-16 px-5 text-end">{{ count }} รายการ</h6>
+            </div>
+            <div class="card-block">
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered">
+                        <thead class="table-dark text-center">
+                            <tr>
+                                <th>ลำดับ</th>
+                                <th>ชื่อสินค้า</th>
+                                <th>จำนวน/ชิ้น</th>
+                                <th>น้ำหนัก/กรัม</th>
+                                <th>ราคาสินค้า</th>
+                                <th>ส่วนลด/บาท</th>
+                                <th>ค่าส่ง/บาท</th>
+                                <th>ราคาสุทธิ</th>
+                                <th>รูปภาพ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for product in products %}
+                                <tr>
+                                    <th class="text-center" scope="row">{{ forloop.counter }}</th>
+                                    <td>{{ product.title }}</td>
+                                    <td class="text-center">{{ product.stock }}</td>
+                                    <td class="text-right">{{ product.weight | floatformat:2 }}</td>
+                                    <td class="text-right">{{ product.price | floatformat:2 | intcomma }}</td>
+                                    <td class="text-right">{{ product.get_discount | floatformat:2 | intcomma }}</td>
+                                    <td class="text-right">{{ product.get_delivery | floatformat:2 | intcomma }}</td>
+                                    <td class="text-right">{{ product.get_net | floatformat:2 | intcomma }}</td>
+                                    <td class="image-cell">
+                                        <img src="{{ product.picture.url }}" alt="Product Image" class="img-fluid">
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>
+<style>
+    .image-cell {
+        width: 200px; /* กำหนดความกว้างของ td */
+        height: 100px; /* กำหนดความสูงของ td */
+        text-align: center; /* กำหนดการจัดวางข้อความและรูปตามศูนย์กลาง */
+        vertical-align: middle; /* จัดวางตามแนวตั้งตามศูนย์กลาง */
+    }
+
+    /* กำหนดคลาส .image-cell img เพื่อปรับขนาดรูปใน td */
+    .image-cell img {
+        max-width: 100%; /* รูปจะยืดหรือหดขนาดเพื่อพอดีกับ td */
+        max-height: 100%; /* รูปจะยืดหรือหดขนาดเพื่อพอดีกับ td */
+}</style>
+{% endblock content %}

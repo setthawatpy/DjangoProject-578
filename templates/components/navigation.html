@@ -1,0 +1,26 @@
+<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom ">
+    <div class="col-md-3 mb-2 mb-md-0">
+        <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">APP PROFILE</a>
+        </div>
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+            <li><a href="{% url "profile" %}" class="nav-link px-2">ประวัติส่วนตัว</a></li>
+            <li><a href="{% url "educational" %}" class="nav-link px-2">ประวัติการศึกษา</a></li>
+            <li><a href="{% url "interestingThings" %}" class="nav-link px-2">สิ่งที่สนใจ</a></li>
+            <li><a href="{% url "dreamCareer" %}" class="nav-link px-2">อาชีพที่ใฝ่ ฝันในอนาคต</a></li>
+            <li><a href="{% url "modelPerson" %}" class="nav-link px-2">บุคคลต้นแบบ</a></li>
+            <li>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">LAB</button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url "lab10" %}">LAB10</a></li>
+                        <li><a class="dropdown-item" href="{% url "lab11" %}">LAB11</a></li>
+                        <li><a class="dropdown-item" href="{% url "lab12" %}">LAB12</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+        <div class="col-md-3 text-end">
+        <button type="button" class="btn btn-outline-primary me-2">Login</button>
+        <button type="button" class="btn btn-primary">Sign-up</button>
+        </div>
+</header>

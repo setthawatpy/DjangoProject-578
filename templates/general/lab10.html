@@ -1,0 +1,107 @@
+{% extends 'components/base.html' %}
+{% load static %}
+{% load humanize %} 
+
+{% block title %}
+    <title>LAB10</title>
+{% endblock title %}
+{% block content %}
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-header">
+                <h5></h5>
+            </div>
+            <div class="card-block table-border-style">
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered">
+                        <tbody>
+                            <tr>
+                                <td>รหัสประจำตัว : </td>
+                                <td>{{ sid }}</td>
+                            </tr>
+                            <tr>
+                                <td>ชื่อ : </td>
+                                <td>{{ name }}</td>
+                            </tr>
+                            <tr>
+                                <td>ชื่อเล่น : </td>
+                                <td>{{ nickname }}</td>
+                            </tr>
+                            <tr>
+                                <td>เพศ : </td>
+                                <td>{{ gender }}</td>
+                            </tr>
+                            <tr>
+                                <td>วันเกิด : </td>
+                                <td>{{ birthday }}</td>
+                            </tr>
+                            <tr>
+                                <td>ส่วนสูง : </td>
+                                <td>{{ height }}</td>
+                            </tr>
+                            <tr>
+                                <td>น้ำหนัก : </td>
+                                <td>{{ weight }}</td>
+                            </tr>
+                            <tr>
+                                <td>ที่อยู่ : </td>
+                                <td>{{ address }}</td>
+                            </tr>
+                            <tr>
+                                <td>เบอร์โทร : </td>
+                                <td>{{ number_phone }}</td>
+                            </tr>
+                            <tr>
+                                <td>อาชีพ : </td>
+                                <td>{{ job }}</td>
+                            </tr>
+                            <tr>
+                                <td>สถานะ : </td>
+                                <td>{{ status }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-block table-border-style">
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered">
+                        <thead class="table-dark text-center">
+                            <tr>
+                                <th>สินค้า</th>
+                                <th>ราคา/บาท</th>
+                                <th>รูปภาพ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for product in productlist %}
+                            <tr>
+                                <td>{{ product.0 }}</td>
+                                <td class="text-center">{{ product.1 | floatformat:2 | intcomma  }}</td>
+                                <td class="image-cell">
+                                    <img src="{% static product.2 %}" alt="product" class="img-fluid">
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .image-cell {
+        width: 200px; /* กำหนดความกว้างของ td */
+        height: 100px; /* กำหนดความสูงของ td */
+        text-align: center; /* กำหนดการจัดวางข้อความและรูปตามศูนย์กลาง */
+        vertical-align: middle; /* จัดวางตามแนวตั้งตามศูนย์กลาง */
+    }
+
+    /* กำหนดคลาส .image-cell img เพื่อปรับขนาดรูปใน td */
+    .image-cell img {
+        max-width: 100%; /* รูปจะยืดหรือหดขนาดเพื่อพอดีกับ td */
+        max-height: 100%; /* รูปจะยืดหรือหดขนาดเพื่อพอดีกับ td */
+}</style>
+{% endblock content %}
